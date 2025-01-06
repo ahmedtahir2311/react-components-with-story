@@ -8,6 +8,23 @@ const meta = {
     layout: 'centered',
   },
   tags: ['autodocs'],
+  argTypes: {
+    onClick: { action: 'clicked' },
+    variant: {
+      control: 'select',
+      options: ['solid', 'outline', 'ghost', 'link', 'subtle'],
+    },
+    size: {
+      control: 'select',
+      options: ['xs', 'sm', 'md', 'lg', 'xl'],
+    },
+    color: {
+      control: 'select',
+      options: ['primary', 'secondary', 'success', 'danger', 'warning', 'info'],
+    },
+    isLoading: { control: 'boolean' },
+    loadingText: { control: 'text' },
+  },
 } satisfies Meta<typeof Button>;
 
 export default meta;
@@ -63,6 +80,20 @@ export const WithIcons: Story = {
       <Button rightIcon={<span>→</span>}>Right Icon</Button>
       <Button leftIcon={<span>←</span>} rightIcon={<span>→</span>}>
         Both Icons
+      </Button>
+    </div>
+  ),
+};
+
+export const LoadingStates: Story = {
+  render: () => (
+    <div className='flex gap-4'>
+      <Button isLoading>Loading</Button>
+      <Button isLoading loadingText='Processing...'>
+        Submit
+      </Button>
+      <Button isLoading variant='outline' loadingText='Saving...'>
+        Save
       </Button>
     </div>
   ),
